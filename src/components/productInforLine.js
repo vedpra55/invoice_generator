@@ -5,8 +5,14 @@ import { BsPlusLg } from "react-icons/bs";
 export default function ProductInforLine() {
   const [lineLenght, setLength] = useState([1]);
 
-  const { handleAddProductLine, handleProductInputChange, productLine } =
-    useDataContext();
+  const {
+    handleAddProductLine,
+    handleProductInputChange,
+    productLine,
+    checkoutData,
+  } = useDataContext();
+
+  console.log(productLine);
 
   function handleAddLine() {
     let newArray = [];
@@ -30,6 +36,7 @@ export default function ProductInforLine() {
           handleaddclick={handleAddProductLine}
           handleinputchange={handleProductInputChange}
           inputList={productLine}
+          currency={checkoutData.selectedCurrency}
           key={i}
         />
       ))}
@@ -44,9 +51,11 @@ export default function ProductInforLine() {
   );
 }
 
-function InputFields({ inputList, handleinputchange, i }) {
-  const rate = parseInt(inputList[i].rate);
-  const qty = parseInt(inputList[i].qty);
+function InputFields({ currency, inputList, handleinputchange, i }) {
+  const rate = parseFloat(inputList[i].rate);
+  const qty = parseFloat(inputList[i].qty);
+
+  console.log(rate);
 
   return (
     <>
@@ -77,7 +86,9 @@ function InputFields({ inputList, handleinputchange, i }) {
             className="w-full h-10 border px-4 border-gray-200"
           />
         </div>
-        <div className="col-span-2  text-end">$ {rate * qty}</div>
+        <div className="col-span-2  text-end">
+          {currency} {rate * qty}
+        </div>
       </div>
     </>
   );

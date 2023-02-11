@@ -112,7 +112,7 @@ const PdfView = React.forwardRef((props, ref) => {
                     Balance Due:
                   </p>
                   <p className=" font-bold text-[18px] text-end">
-                    {checkoutData.selectedCurrency} {balanceDue}
+                    {checkoutData.selectedCurrency} {balanceDue.toFixed(3)}
                   </p>
                 </div>
               </div>
@@ -155,7 +155,7 @@ const PdfView = React.forwardRef((props, ref) => {
           <div className="flex gap-x-5 w-80 justify-between">
             <p className=" text-gray-500 w-32 flex justify-end">Total:</p>
             <p>
-              {checkoutData.selectedCurrency} {total}
+              {checkoutData.selectedCurrency} {total.toFixed(3)}
             </p>
           </div>
         </div>

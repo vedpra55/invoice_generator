@@ -76,7 +76,7 @@ export default function InvoiceNotesTotal() {
           <div className="flex justify-between items-center">
             <p>Subtotal</p>
             <p>
-              {checkoutData.selectedCurrency} {subTotal}
+              {checkoutData.selectedCurrency} {subTotal.toFixed(3)}
             </p>
           </div>
           <div className="flex justify-between items-center mt-5 px-5">
@@ -158,7 +158,7 @@ export default function InvoiceNotesTotal() {
             <p>Balance Due </p>
             <p>
               {" "}
-              {checkoutData.selectedCurrency} {balanceDue}
+              {checkoutData.selectedCurrency} {balanceDue.toFixed(3)}
             </p>
           </div>
         </div>
