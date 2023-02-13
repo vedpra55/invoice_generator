@@ -12,8 +12,6 @@ export default function ProductInforLine() {
     checkoutData,
   } = useDataContext();
 
-  console.log(productLine);
-
   function handleAddLine() {
     let newArray = [];
     newArray.push(...lineLenght);
@@ -61,11 +59,11 @@ function InputFields({ currency, inputList, handleinputchange, i }) {
     <>
       <div className="grid grid-cols-12 mt-2  pr-5 gap-x-3  items-center  w-full h-10 ">
         <div className="col-span-6 lg:col-span-6">
-          <input
+          <textarea
             name="itemName"
             onChange={(e) => handleinputchange(e, i)}
             placeholder="Description of service or product..."
-            className="w-full h-10 border px-4 border-gray-200"
+            className="w-full py-1 h-10 border px-4 border-gray-200"
           />
         </div>
         <div className="col-span-2 lg:col-span-2">

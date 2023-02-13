@@ -55,20 +55,20 @@ export default function InvoiceNotesTotal() {
         <div className="flex flex-col gap-y-5">
           <div>
             <p>Terms</p>
-            <input
+            <textarea
               name="terms"
               onChange={(e) => handleInvoiceSubDetailsInputChange(e)}
               placeholder="Terms and conditions - late fees, payment methods, delivery schedule"
-              className="mt-1 placeholder:text-[14px] w-full lg:w-[28rem] h-20 myInput"
+              className="py-2 mt-1 placeholder:text-[14px] w-full lg:w-[28rem] h-20 myInput"
             />
           </div>
           <div>
             <p>Notes</p>
-            <input
+            <textarea
               name="notes"
               onChange={(e) => handleInvoiceSubDetailsInputChange(e)}
               placeholder="Notes - any relevant information not already covered"
-              className="mt-1 placeholder:text-[14px] w-full lg:w-[28rem] h-20 myInput"
+              className="py-2  mt-1 placeholder:text-[14px] w-full lg:w-[28rem] h-20 myInput"
             />
           </div>
         </div>

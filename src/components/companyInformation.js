@@ -4,18 +4,11 @@ import React, { useState } from "react";
 export default function CompanyInformation() {
   const { handleCompanyInputChange } = useDataContext();
 
-  const [companyName, setCompanyName] = useState("");
-  const [taxNumber, setTaxNumber] = useState("");
-  const [address, setAddress] = useState("");
-  const [clientName, setClientName] = useState("");
-  const [clienttax, setClienttax] = useState("");
-  const [clientaddress, setClientaddress] = useState("");
-
   return (
     <div>
       <div className="mt-5 flex flex-col gap-y-1 ">
         <div>
-          <input
+          <textarea
             name="companyName"
             onChange={(e) => handleCompanyInputChange(e)}
             className="  px-3 py-1 placeholder:text-[14px]  outline-gray-300"
@@ -23,7 +16,7 @@ export default function CompanyInformation() {
           />
         </div>
         <div>
-          <input
+          <textarea
             name="taxNumber"
             onChange={(e) => handleCompanyInputChange(e)}
             className="  px-3 py-1 placeholder:text-[14px]  outline-gray-100"
@@ -31,7 +24,7 @@ export default function CompanyInformation() {
           />
         </div>
         <div>
-          <input
+          <textarea
             name="address"
             onChange={(e) => handleCompanyInputChange(e)}
             className="  px-3 py-1 placeholder:text-[14px] outline-gray-100"
@@ -41,7 +34,7 @@ export default function CompanyInformation() {
       </div>
       <div className="mt-10 flex flex-col gap-y-1">
         <div>
-          <input
+          <textarea
             name="clientName"
             onChange={(e) => handleCompanyInputChange(e)}
             className="  px-3 py-1 placeholder:text-[14px]  outline-gray-300"
@@ -49,7 +42,7 @@ export default function CompanyInformation() {
           />
         </div>
         <div>
-          <input
+          <textarea
             name="clienttax"
             onChange={(e) => handleCompanyInputChange(e)}
             className="  px-3 py-1 placeholder:text-[14px]  outline-gray-300"
@@ -57,7 +50,7 @@ export default function CompanyInformation() {
           />
         </div>
         <div>
-          <input
+          <textarea
             name="clientaddress"
             onChange={(e) => handleCompanyInputChange(e)}
             className="  px-3 py-1 placeholder:text-[14px]  outline-gray-300"
