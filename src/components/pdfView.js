@@ -19,6 +19,40 @@ const PdfView = React.forwardRef((props, ref) => {
 
   const amountPaid = invoiceSubDetails.amountPaid;
 
+  function calculateDiscount() {
+    let dis = 0;
+    if (!invoiceSubDetails.isDiscountValue) {
+      const discountRate = invoiceSubDetails.discount;
+      dis = subTotal * (discountRate / 100);
+    }
+    if (invoiceSubDetails.isDiscountValue) {
+      dis = parseInt(invoiceSubDetails.discount);
+    }
+    return dis;
+  }
+
+  function calculateShipping() {
+    let shi = 0;
+    if (!invoiceSubDetails.isShippingValue) {
+      const shippingRate = invoiceSubDetails.shipping;
+      shi = subTotal * (shippingRate / 100);
+    }
+    if (invoiceSubDetails.isShippingValue) {
+      shi = parseInt(invoiceSubDetails.shipping);
+    }
+    return shi;
+  }
+
+  function calculateValueAsPercentage() {
+    const taxRate = invoiceSubDetails.tax;
+    const taxDue = subTotal * (taxRate / 100);
+
+    const discount = calculateDiscount();
+    const shipping = calculateShipping();
+
+    setTotal(subTotal + taxDue + shipping - discount);
+  }
+
   let sub = 0;
   function addArray() {
     setSubTotal(0);
@@ -39,14 +73,7 @@ const PdfView = React.forwardRef((props, ref) => {
   useEffect(() => {
     addArray();
     if (subTotal !== 0) {
-      const taxRate = invoiceSubDetails.tax;
-      const discountRate = invoiceSubDetails.discount;
-      const shippingRate = invoiceSubDetails.shipping;
-
-      const taxDue = subTotal * (taxRate / 100);
-      const discountDue = subTotal * (discountRate / 100);
-
-      setTotal(subTotal + taxDue - discountDue);
+      calculateValueAsPercentage();
     }
   }, [invoiceSubDetails, subTotal]);
 
@@ -151,6 +178,10 @@ const PdfView = React.forwardRef((props, ref) => {
           <div className="flex gap-x-5 w-80 justify-between">
             <p className=" text-gray-500 w-32 flex justify-end">Discount:</p>
             <p>{invoiceSubDetails.discount} %</p>
+          </div>
+          <div className="flex gap-x-5 w-80 justify-between">
+            <p className=" text-gray-500 w-32 flex justify-end">Shipping:</p>
+            <p>{invoiceSubDetails.shipping} %</p>
           </div>
           <div className="flex gap-x-5 w-80 justify-between">
             <p className=" text-gray-500 w-32 flex justify-end">Total:</p>

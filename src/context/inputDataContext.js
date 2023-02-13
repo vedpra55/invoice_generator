@@ -38,6 +38,8 @@ export default function DataContextWrapper({ children }) {
     discount: "",
     shipping: "",
     amountPaid: "",
+    isDiscountValue: false,
+    isShippingValue: false,
   });
 
   function handleInvoiceSubDetailsInputChange(e) {
@@ -106,6 +108,7 @@ export default function DataContextWrapper({ children }) {
         selectedImageUrl,
         checkoutData,
         invoiceSubDetails,
+        setInvoiceSubDetails,
       }}
     >
       {children}

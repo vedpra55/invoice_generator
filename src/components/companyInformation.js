@@ -1,5 +1,5 @@
 import { useDataContext } from "@/context/inputDataContext";
-import React, { useState } from "react";
+import React from "react";
 
 export default function CompanyInformation() {
   const { handleCompanyInputChange } = useDataContext();
@@ -8,7 +8,7 @@ export default function CompanyInformation() {
     <div>
       <div className="mt-5 flex flex-col gap-y-1 ">
         <div>
-          <textarea
+          <input
             name="companyName"
             onChange={(e) => handleCompanyInputChange(e)}
             className="  px-3 py-1 placeholder:text-[14px]  outline-gray-300"
@@ -16,7 +16,7 @@ export default function CompanyInformation() {
           />
         </div>
         <div>
-          <textarea
+          <input
             name="taxNumber"
             onChange={(e) => handleCompanyInputChange(e)}
             className="  px-3 py-1 placeholder:text-[14px]  outline-gray-100"
@@ -34,7 +34,7 @@ export default function CompanyInformation() {
       </div>
       <div className="mt-10 flex flex-col gap-y-1">
         <div>
-          <textarea
+          <input
             name="clientName"
             onChange={(e) => handleCompanyInputChange(e)}
             className="  px-3 py-1 placeholder:text-[14px]  outline-gray-300"
@@ -42,7 +42,7 @@ export default function CompanyInformation() {
           />
         </div>
         <div>
-          <textarea
+          <input
             name="clienttax"
             onChange={(e) => handleCompanyInputChange(e)}
             className="  px-3 py-1 placeholder:text-[14px]  outline-gray-300"

@@ -53,8 +53,6 @@ function InputFields({ currency, inputList, handleinputchange, i }) {
   const rate = parseFloat(inputList[i].rate);
   const qty = parseFloat(inputList[i].qty);
 
-  console.log(rate);
-
   return (
     <>
       <div className="grid grid-cols-12 mt-2  pr-5 gap-x-3  items-center  w-full h-10 ">

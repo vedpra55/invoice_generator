@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useDataContext } from "@/context/inputDataContext";
 import React, { useEffect, useState } from "react";
 import { BsPlusLg } from "react-icons/bs";
@@ -8,6 +9,7 @@ export default function InvoiceNotesTotal() {
     invoiceSubDetails,
     productLine,
     checkoutData,
+    setInvoiceSubDetails,
   } = useDataContext();
   const [isShowDiscount, setShowDiscount] = useState(false);
   const [isShowShipping, setShowShipping] = useState(false);
@@ -27,6 +29,40 @@ export default function InvoiceNotesTotal() {
     });
   }
 
+  function calculateDiscount() {
+    let dis = 0;
+    if (!invoiceSubDetails.isDiscountValue) {
+      const discountRate = invoiceSubDetails.discount;
+      dis = subTotal * (discountRate / 100);
+    }
+    if (invoiceSubDetails.isDiscountValue) {
+      dis = parseInt(invoiceSubDetails.discount);
+    }
+    return dis;
+  }
+
+  function calculateShipping() {
+    let shi = 0;
+    if (!invoiceSubDetails.isShippingValue) {
+      const shippingRate = invoiceSubDetails.shipping;
+      shi = subTotal * (shippingRate / 100);
+    }
+    if (invoiceSubDetails.isShippingValue) {
+      shi = parseInt(invoiceSubDetails.shipping);
+    }
+    return shi;
+  }
+
+  function calculateValueAsPercentage() {
+    const taxRate = invoiceSubDetails.tax;
+    const taxDue = subTotal * (taxRate / 100);
+
+    const discount = calculateDiscount();
+    const shipping = calculateShipping();
+
+    setTotal(subTotal + taxDue + shipping - discount);
+  }
+
   useEffect(() => {
     addArray();
   }, [invoiceSubDetails, productLine]);
@@ -34,14 +70,7 @@ export default function InvoiceNotesTotal() {
   useEffect(() => {
     addArray();
     if (subTotal !== 0) {
-      const taxRate = invoiceSubDetails.tax;
-      const discountRate = invoiceSubDetails.discount;
-      const shippingRate = invoiceSubDetails.shipping;
-
-      const taxDue = subTotal * (taxRate / 100);
-      const discountDue = subTotal * (discountRate / 100);
-
-      setTotal(subTotal + taxDue - discountDue);
+      calculateValueAsPercentage();
     }
   }, [invoiceSubDetails, subTotal]);
 
@@ -90,32 +119,62 @@ export default function InvoiceNotesTotal() {
             />
           </div>
           {isShowDiscount && (
-            <div className="flex justify-between items-center mt-5 px-5">
-              <p className=" flex justify-end w-full px-5 text-[14px] ">
-                Discount
-              </p>
-              <input
-                name="discount"
-                type="number"
-                onChange={(e) => handleInvoiceSubDetailsInputChange(e)}
-                placeholder="0%"
-                className="myInput w-44 h-8"
-              />
-            </div>
+            <>
+              <div className="flex justify-between items-center mt-5 px-5">
+                <p className=" flex justify-end w-full px-5 text-[14px] ">
+                  Discount
+                </p>
+                <input
+                  name="discount"
+                  type="number"
+                  onChange={(e) => handleInvoiceSubDetailsInputChange(e)}
+                  placeholder="0%"
+                  className="myInput w-44 h-8"
+                />
+              </div>
+              <div className=" flex justify-center items-center gap-x-3 my-3">
+                <input
+                  onChange={(e) =>
+                    setInvoiceSubDetails({
+                      ...invoiceSubDetails,
+                      isDiscountValue: e.target.checked,
+                    })
+                  }
+                  checked={invoiceSubDetails.isDiscountValue}
+                  type="checkbox"
+                />
+                <p className="text-xs">Direct Value</p>
+              </div>
+            </>
           )}
           {isShowShipping && (
-            <div className="flex justify-between items-center mt-5 px-5">
-              <p className=" flex justify-end w-full px-5 text-[14px] ">
-                Shipping
-              </p>
-              <input
-                name="shipping"
-                type="number"
-                onChange={(e) => handleInvoiceSubDetailsInputChange(e)}
-                placeholder="0%"
-                className="myInput w-44 h-8"
-              />
-            </div>
+            <>
+              <div className="flex justify-between items-center mt-5 px-5">
+                <p className=" flex justify-end w-full px-5 text-[14px] ">
+                  Shipping
+                </p>
+                <input
+                  name="shipping"
+                  type="number"
+                  onChange={(e) => handleInvoiceSubDetailsInputChange(e)}
+                  placeholder="0%"
+                  className="myInput w-44 h-8"
+                />
+              </div>
+              <div className=" flex justify-center items-center gap-x-3 my-3">
+                <input
+                  onChange={(e) =>
+                    setInvoiceSubDetails({
+                      ...invoiceSubDetails,
+                      isShippingValue: e.target.checked,
+                    })
+                  }
+                  checked={invoiceSubDetails.isShippingValue}
+                  type="checkbox"
+                />
+                <p className="text-xs">Direct Value</p>
+              </div>
+            </>
           )}
           <div className=" flex justify-center gap-x-5 pl-20 mt-2">
             {!isShowDiscount && (
@@ -141,7 +200,7 @@ export default function InvoiceNotesTotal() {
             <p>Total</p>
             <p>
               {" "}
-              {checkoutData.selectedCurrency} {total}
+              {checkoutData.selectedCurrency} {total.toFixed(3)}
             </p>
           </div>
           <div className="flex justify-between items-center mt-5 px-5">

@@ -29,7 +29,7 @@ export default function InvoiceInformation() {
         </div>
         <div className="flex  items-center gap-x-4">
           <p className=" text-gray-500 w-[8.5rem] ">Payment Terms</p>
-          <textarea
+          <input
             onChange={(e) => handleInvoiceInputChange(e)}
             name="paymentTerms"
             className="h-14 w-48  lg:w-72  rounded-sm border outline-gray-200 px-5 py-1"
@@ -46,7 +46,7 @@ export default function InvoiceInformation() {
         </div>
         <div className="flex  items-center gap-x-4">
           <p className=" text-gray-500 w-[8.5rem] ">PO Number</p>
-          <textarea
+          <input
             onChange={(e) => handleInvoiceInputChange(e)}
             name="poNumber"
             className="h-14 w-48  lg:w-72  rounded-sm border outline-gray-200 px-5 py-1"
