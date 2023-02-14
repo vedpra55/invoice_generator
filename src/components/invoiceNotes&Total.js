@@ -11,8 +11,6 @@ export default function InvoiceNotesTotal() {
     checkoutData,
     setInvoiceSubDetails,
   } = useDataContext();
-  const [isShowDiscount, setShowDiscount] = useState(false);
-  const [isShowShipping, setShowShipping] = useState(false);
 
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
@@ -118,7 +116,7 @@ export default function InvoiceNotesTotal() {
               className="myInput w-44 h-8"
             />
           </div>
-          {isShowDiscount &&
+          {invoiceSubDetails.isShowDiscount &&
             (invoiceSubDetails.isDiscountValue ? (
               <>
                 <div className="flex justify-between items-center mt-5 px-5">
@@ -176,14 +174,14 @@ export default function InvoiceNotesTotal() {
                 </div>
               </>
             ))}
-          {isShowDiscount && (
+          {invoiceSubDetails.isShowDiscount && (
             <div className="flex justify-center">
               <button
                 onClick={() => {
-                  setShowDiscount(false);
                   setInvoiceSubDetails({
                     ...invoiceSubDetails,
                     discount: 0,
+                    isShowDiscount: false,
                   });
                 }}
                 className="bg-gray-100 px-2 py-1  text-xs"
@@ -192,7 +190,7 @@ export default function InvoiceNotesTotal() {
               </button>
             </div>
           )}
-          {isShowShipping &&
+          {invoiceSubDetails.isShowShipping &&
             (invoiceSubDetails.isShippingValue ? (
               <>
                 <div className="flex justify-between items-center mt-5 px-5">
@@ -250,14 +248,14 @@ export default function InvoiceNotesTotal() {
                 </div>
               </>
             ))}
-          {isShowShipping && (
+          {invoiceSubDetails.isShowShipping && (
             <div className="flex justify-center">
               <button
                 onClick={() => {
-                  setShowShipping(false);
                   setInvoiceSubDetails({
                     ...invoiceSubDetails,
                     shipping: 0,
+                    isShowShipping: false,
                   });
                 }}
                 className="bg-gray-100 px-2 py-1  text-xs"
@@ -267,18 +265,28 @@ export default function InvoiceNotesTotal() {
             </div>
           )}
           <div className=" flex justify-center gap-x-5 pl-20 mt-2">
-            {!isShowDiscount && (
+            {!invoiceSubDetails.isShowDiscount && (
               <div
-                onClick={() => setShowDiscount(true)}
+                onClick={() =>
+                  setInvoiceSubDetails({
+                    ...invoiceSubDetails,
+                    isShowDiscount: true,
+                  })
+                }
                 className="cursor-pointer flex gap-x-2 items-center mt-2 text-[#89B608]"
               >
                 <BsPlusLg />
                 <p className="text-[15px]">Discount</p>
               </div>
             )}
-            {!isShowShipping && (
+            {!invoiceSubDetails.isShowShipping && (
               <div
-                onClick={() => setShowShipping(true)}
+                onClick={() =>
+                  setInvoiceSubDetails({
+                    ...invoiceSubDetails,
+                    isShowShipping: true,
+                  })
+                }
                 className="cursor-pointer flex gap-x-2 items-center mt-2 text-[#89B608]"
               >
                 <BsPlusLg />

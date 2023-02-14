@@ -40,6 +40,8 @@ export default function DataContextWrapper({ children }) {
     amountPaid: "",
     isDiscountValue: false,
     isShippingValue: false,
+    isShowDiscount: false,
+    isShowShipping: false,
   });
 
   function handleInvoiceSubDetailsInputChange(e) {

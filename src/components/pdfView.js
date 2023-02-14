@@ -178,13 +178,21 @@ const PdfView = React.forwardRef((props, ref) => {
             <p className=" text-gray-500 w-32 flex justify-end">Tax:</p>
             <p>{invoiceSubDetails.tax} %</p>
           </div>
+          {invoiceSubDetails.isShowDiscount && (
+            <div className="flex gap-x-5 w-80 justify-between">
+              <p className=" text-gray-500 w-32 flex justify-end">Discount:</p>
+              <p>{invoiceSubDetails.discount} %</p>
+            </div>
+          )}
+          {invoiceSubDetails.isShowShipping && (
+            <div className="flex gap-x-5 w-80 justify-between">
+              <p className=" text-gray-500 w-32 flex justify-end">Shipping:</p>
+              <p>{invoiceSubDetails.shipping} %</p>
+            </div>
+          )}
           <div className="flex gap-x-5 w-80 justify-between">
-            <p className=" text-gray-500 w-32 flex justify-end">Discount:</p>
-            <p>{invoiceSubDetails.discount} %</p>
-          </div>
-          <div className="flex gap-x-5 w-80 justify-between">
-            <p className=" text-gray-500 w-32 flex justify-end">Shipping:</p>
-            <p>{invoiceSubDetails.shipping} %</p>
+            <p className=" text-gray-500 w-32 flex justify-end">Amount Paid:</p>
+            <p>{invoiceSubDetails.amountPaid}</p>
           </div>
           <div className="flex gap-x-5 w-80 justify-between">
             <p className=" text-gray-500 w-32 flex justify-end">Total:</p>
