@@ -20,7 +20,7 @@ export default function CompanyInformation() {
             name="taxNumber"
             onChange={(e) => handleCompanyInputChange(e)}
             className="  px-3 py-1 placeholder:text-[14px]  outline-gray-100"
-            placeholder="Comapny's Tax Number"
+            placeholder="Company's Tax Number"
           />
         </div>
         <div>

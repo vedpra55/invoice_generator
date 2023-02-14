@@ -14,9 +14,9 @@ export default function DataContextWrapper({ children }) {
 
   const [invoiceDetails, setInvoiceDetails] = useState({
     invoiceId: "",
-    date: "",
+    date: new Date().toISOString().slice(0, 10),
     paymentTerms: "",
-    dueDate: "",
+    dueDate: new Date().toISOString().slice(0, 10),
     poNumber: "",
   });
 
@@ -109,6 +109,8 @@ export default function DataContextWrapper({ children }) {
         checkoutData,
         invoiceSubDetails,
         setInvoiceSubDetails,
+        setSelectedImageUrl,
+        setProductLine,
       }}
     >
       {children}

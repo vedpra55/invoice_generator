@@ -16,7 +16,7 @@ const InvoiceCheckout = React.forwardRef((props, ref) => {
         {({ toPdf }) => (
           <button
             onClick={toPdf}
-            className=" flex gap-x-2 items-center mt-2 text-[#89B608]"
+            className=" flex gap-x-2 items-center mt-5 text-[#89B608]"
           >
             <BsDownload />
             <p>Download Invoice</p>
@@ -29,7 +29,7 @@ const InvoiceCheckout = React.forwardRef((props, ref) => {
           value={checkoutData.selectedCurrency}
           name="selectedCurrency"
           onChange={(e) => handleCheckoutInputChange(e)}
-          className="px-5 py-2 w-36 border border-gray-200  bg-transparent"
+          className="px-5 py-2 w-48 border border-gray-200  bg-transparent"
         >
           <option>USD ($)</option>
           <option>INR</option>
@@ -41,7 +41,7 @@ const InvoiceCheckout = React.forwardRef((props, ref) => {
           name="selectedCurrency"
           value={checkoutData.selectedType}
           onChange={(e) => handleCheckoutInputChange(e)}
-          className="px-5 w-36 py-2 border border-gray-200  bg-transparent"
+          className="px-5 w-48 py-2 border border-gray-200  bg-transparent"
         >
           <option>Invoice</option>
         </select>

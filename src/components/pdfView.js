@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { useDataContext } from "@/context/inputDataContext";
 import React, { useEffect, useState } from "react";
@@ -86,7 +87,7 @@ const PdfView = React.forwardRef((props, ref) => {
       <h4 className="text-3xl font-semibold mt-5">Preview Invoice Pdf</h4>
       <div
         ref={ref}
-        className="a4Size px-5 py-5 mt-10  my-10  bg-white shadow-md"
+        className="a4Size px-10 py-5 mt-10  my-10  bg-white shadow-md"
       >
         <div className="flex justify-between">
           <div>
@@ -95,14 +96,16 @@ const PdfView = React.forwardRef((props, ref) => {
             )}
             <div className="mt-5 px-4">
               <p className=" font-bold">{companyDetails.companyName}</p>
-              <p>{companyDetails.address}</p>
+              <p className="whitespace-pre-line">{companyDetails.address}</p>
               <p>{companyDetails.taxNumber}</p>
             </div>
             <div className="mt-5 px-4">
               <p className=" text-gray-500">Bill To:</p>
               <p className=" font-bold">{companyDetails.clientName}</p>
               <p>{companyDetails.clienttax}</p>
-              <p>{companyDetails.clientaddress}</p>
+              <p className="whitespace-pre-line">
+                {companyDetails.clientaddress}
+              </p>
             </div>
           </div>
           <div className="mt-3">
@@ -155,7 +158,7 @@ const PdfView = React.forwardRef((props, ref) => {
           </div>
           {productLine.map((item, i) => (
             <div key={i} className=" grid grid-cols-12 px-5 py-3">
-              <p className="col-span-5">{item.itemName}</p>
+              <p className="col-span-5 whitespace-pre-line">{item.itemName}</p>
               <p className="col-span-3">{item.qty}</p>
               <p className="col-span-2">{item.rate}</p>
               <p className="col-span-2  text-end">
@@ -192,11 +195,11 @@ const PdfView = React.forwardRef((props, ref) => {
         </div>
         <div className=" mt-10">
           <p className=" text-[14px] mb-1 text-gray-500">Notes</p>
-          <p>{invoiceSubDetails.notes}</p>
+          <p className="whitespace-pre-line">{invoiceSubDetails.notes}</p>
         </div>
         <div className=" mt-5">
           <p className=" text-[14px] mb-1 text-gray-500">Terms</p>
-          <p>{invoiceSubDetails.terms}</p>
+          <p className="whitespace-pre-line">{invoiceSubDetails.terms}</p>
         </div>
       </div>
     </div>

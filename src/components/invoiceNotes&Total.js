@@ -118,63 +118,153 @@ export default function InvoiceNotesTotal() {
               className="myInput w-44 h-8"
             />
           </div>
+          {isShowDiscount &&
+            (invoiceSubDetails.isDiscountValue ? (
+              <>
+                <div className="flex justify-between items-center mt-5 px-5">
+                  <p className=" flex justify-end w-full px-5 text-[14px] ">
+                    Discount
+                  </p>
+                  <input
+                    name="discount"
+                    type="number"
+                    onChange={(e) => handleInvoiceSubDetailsInputChange(e)}
+                    placeholder=""
+                    className="myInput w-44 h-8"
+                  />
+                </div>
+                <div className=" flex justify-center items-center gap-x-3 my-3">
+                  <input
+                    onChange={(e) =>
+                      setInvoiceSubDetails({
+                        ...invoiceSubDetails,
+                        isDiscountValue: e.target.checked,
+                      })
+                    }
+                    checked={invoiceSubDetails.isDiscountValue}
+                    type="checkbox"
+                  />
+                  <p className="text-xs">Direct Value</p>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex justify-between items-center mt-5 px-5">
+                  <p className=" flex justify-end w-full px-5 text-[14px] ">
+                    Discount
+                  </p>
+                  <input
+                    name="discount"
+                    type="number"
+                    onChange={(e) => handleInvoiceSubDetailsInputChange(e)}
+                    placeholder="%"
+                    className="myInput w-44 h-8"
+                  />
+                </div>
+                <div className=" flex justify-center items-center gap-x-3 my-3">
+                  <input
+                    onChange={(e) =>
+                      setInvoiceSubDetails({
+                        ...invoiceSubDetails,
+                        isDiscountValue: e.target.checked,
+                      })
+                    }
+                    checked={invoiceSubDetails.isDiscountValue}
+                    type="checkbox"
+                  />
+                  <p className="text-xs">Direct Value</p>
+                </div>
+              </>
+            ))}
           {isShowDiscount && (
-            <>
-              <div className="flex justify-between items-center mt-5 px-5">
-                <p className=" flex justify-end w-full px-5 text-[14px] ">
-                  Discount
-                </p>
-                <input
-                  name="discount"
-                  type="number"
-                  onChange={(e) => handleInvoiceSubDetailsInputChange(e)}
-                  placeholder="0%"
-                  className="myInput w-44 h-8"
-                />
-              </div>
-              <div className=" flex justify-center items-center gap-x-3 my-3">
-                <input
-                  onChange={(e) =>
-                    setInvoiceSubDetails({
-                      ...invoiceSubDetails,
-                      isDiscountValue: e.target.checked,
-                    })
-                  }
-                  checked={invoiceSubDetails.isDiscountValue}
-                  type="checkbox"
-                />
-                <p className="text-xs">Direct Value</p>
-              </div>
-            </>
+            <div className="flex justify-center">
+              <button
+                onClick={() => {
+                  setShowDiscount(false);
+                  setInvoiceSubDetails({
+                    ...invoiceSubDetails,
+                    discount: 0,
+                  });
+                }}
+                className="bg-gray-100 px-2 py-1  text-xs"
+              >
+                Delete discount field
+              </button>
+            </div>
           )}
+          {isShowShipping &&
+            (invoiceSubDetails.isShippingValue ? (
+              <>
+                <div className="flex justify-between items-center mt-5 px-5">
+                  <p className=" flex justify-end w-full px-5 text-[14px] ">
+                    Shipping
+                  </p>
+                  <input
+                    name="shipping"
+                    type="number"
+                    onChange={(e) => handleInvoiceSubDetailsInputChange(e)}
+                    placeholder=""
+                    className="myInput w-44 h-8"
+                  />
+                </div>
+                <div className=" flex justify-center items-center gap-x-3 my-3">
+                  <input
+                    onChange={(e) =>
+                      setInvoiceSubDetails({
+                        ...invoiceSubDetails,
+                        isShippingValue: e.target.checked,
+                      })
+                    }
+                    checked={invoiceSubDetails.isShippingValue}
+                    type="checkbox"
+                  />
+                  <p className="text-xs">Direct Value</p>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex justify-between items-center mt-5 px-5">
+                  <p className=" flex justify-end w-full px-5 text-[14px] ">
+                    Shipping
+                  </p>
+                  <input
+                    name="shipping"
+                    type="number"
+                    onChange={(e) => handleInvoiceSubDetailsInputChange(e)}
+                    placeholder="0%"
+                    className="myInput w-44 h-8"
+                  />
+                </div>
+                <div className=" flex justify-center items-center gap-x-3 my-3">
+                  <input
+                    onChange={(e) =>
+                      setInvoiceSubDetails({
+                        ...invoiceSubDetails,
+                        isShippingValue: e.target.checked,
+                      })
+                    }
+                    checked={invoiceSubDetails.isShippingValue}
+                    type="checkbox"
+                  />
+                  <p className="text-xs">Direct Value</p>
+                </div>
+              </>
+            ))}
           {isShowShipping && (
-            <>
-              <div className="flex justify-between items-center mt-5 px-5">
-                <p className=" flex justify-end w-full px-5 text-[14px] ">
-                  Shipping
-                </p>
-                <input
-                  name="shipping"
-                  type="number"
-                  onChange={(e) => handleInvoiceSubDetailsInputChange(e)}
-                  placeholder="0%"
-                  className="myInput w-44 h-8"
-                />
-              </div>
-              <div className=" flex justify-center items-center gap-x-3 my-3">
-                <input
-                  onChange={(e) =>
-                    setInvoiceSubDetails({
-                      ...invoiceSubDetails,
-                      isShippingValue: e.target.checked,
-                    })
-                  }
-                  checked={invoiceSubDetails.isShippingValue}
-                  type="checkbox"
-                />
-                <p className="text-xs">Direct Value</p>
-              </div>
-            </>
+            <div className="flex justify-center">
+              <button
+                onClick={() => {
+                  setShowShipping(false);
+                  setInvoiceSubDetails({
+                    ...invoiceSubDetails,
+                    shipping: 0,
+                  });
+                }}
+                className="bg-gray-100 px-2 py-1  text-xs"
+              >
+                Delete shipping field
+              </button>
+            </div>
           )}
           <div className=" flex justify-center gap-x-5 pl-20 mt-2">
             {!isShowDiscount && (

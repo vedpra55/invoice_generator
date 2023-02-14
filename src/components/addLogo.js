@@ -6,7 +6,8 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 export default function AddLogo() {
   const inputFileRef = useRef();
 
-  const { selectedImageUrl, handleImageInputChange } = useDataContext();
+  const { setSelectedImageUrl, selectedImageUrl, handleImageInputChange } =
+    useDataContext();
 
   return (
     <div>
@@ -28,6 +29,15 @@ export default function AddLogo() {
           src={selectedImageUrl}
           alt="djdsa"
         />
+      )}
+
+      {selectedImageUrl && (
+        <button
+          className="text-[13px] mt-5 bg-gray-100 px-2 py-1 rounded-md"
+          onClick={() => setSelectedImageUrl(null)}
+        >
+          Delete Logo
+        </button>
       )}
 
       <input

@@ -7,7 +7,7 @@ import { AiOutlineMail, AiOutlineStar, AiOutlineSetting } from "react-icons/ai";
 export default function Navbar() {
   return (
     <nav className="flex flex-wrap gap-y-5 items-center justify-between mx-5 my-8 bg-white">
-      <div className=" relative w-36 h-8">
+      <div className=" relative w-[140px] h-[30px]">
         <Image
           fill
           sizes="50vh"

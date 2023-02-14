@@ -2,7 +2,7 @@ import { useDataContext } from "@/context/inputDataContext";
 import React from "react";
 
 export default function InvoiceInformation() {
-  const { handleInvoiceInputChange } = useDataContext();
+  const { invoiceDetails, handleInvoiceInputChange } = useDataContext();
 
   return (
     <div className="flex flex-col gap-y-5 lg:items-end">
@@ -21,6 +21,7 @@ export default function InvoiceInformation() {
         <div className="flex items-center gap-x-4">
           <p className=" text-gray-500 w-[8.5rem] ">Date</p>
           <input
+            value={invoiceDetails.date}
             onChange={(e) => handleInvoiceInputChange(e)}
             type="date"
             name="date"
@@ -38,6 +39,7 @@ export default function InvoiceInformation() {
         <div className="flex  items-center gap-x-4">
           <p className=" text-gray-500 w-[8.5rem] ">Due Date</p>
           <input
+            value={invoiceDetails.dueDate}
             onChange={(e) => handleInvoiceInputChange(e)}
             type="date"
             name="dueDate"

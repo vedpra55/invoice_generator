@@ -9,6 +9,7 @@ export default function ProductInforLine() {
     handleAddProductLine,
     handleProductInputChange,
     productLine,
+    setProductLine,
     checkoutData,
   } = useDataContext();
 
@@ -18,6 +19,16 @@ export default function ProductInforLine() {
     newArray.push(Math.random());
     setLength(newArray);
     handleAddProductLine();
+  }
+
+  function handleRemoveLine(i) {
+    let newArray = [];
+    let val = [...productLine];
+    val.splice(i);
+    setProductLine(val);
+    newArray.push(...lineLenght);
+    newArray.splice(i);
+    setLength(newArray);
   }
 
   return (
@@ -35,6 +46,7 @@ export default function ProductInforLine() {
           handleinputchange={handleProductInputChange}
           inputList={productLine}
           currency={checkoutData.selectedCurrency}
+          handleRemoveLine={handleRemoveLine}
           key={i}
         />
       ))}
@@ -49,7 +61,13 @@ export default function ProductInforLine() {
   );
 }
 
-function InputFields({ currency, inputList, handleinputchange, i }) {
+function InputFields({
+  currency,
+  inputList,
+  handleinputchange,
+  i,
+  handleRemoveLine,
+}) {
   const rate = parseFloat(inputList[i].rate);
   const qty = parseFloat(inputList[i].qty);
 
@@ -61,7 +79,7 @@ function InputFields({ currency, inputList, handleinputchange, i }) {
             name="itemName"
             onChange={(e) => handleinputchange(e, i)}
             placeholder="Description of service or product..."
-            className="w-full py-1 h-10 border px-4 border-gray-200"
+            className="w-full py-1 md:py-[12px] h-11 border px-4 border-gray-200"
           />
         </div>
         <div className="col-span-2 lg:col-span-2">
@@ -70,7 +88,7 @@ function InputFields({ currency, inputList, handleinputchange, i }) {
             type="number"
             onChange={(e) => handleinputchange(e, i)}
             placeholder="1"
-            className="w-full h-10 border px-4 border-gray-200"
+            className="w-full h-11 border px-4 border-gray-200"
           />
         </div>
         <div className="col-span-2">
@@ -79,13 +97,21 @@ function InputFields({ currency, inputList, handleinputchange, i }) {
             name="rate"
             onChange={(e) => handleinputchange(e, i)}
             placeholder="$ 0"
-            className="w-full h-10 border px-4 border-gray-200"
+            className="w-full h-11 border px-4 border-gray-200"
           />
         </div>
         <div className="col-span-2  text-end">
           {currency} {rate * qty}
         </div>
       </div>
+      {i !== 0 && (
+        <button
+          className="text-xs bg-gray-100 px-2 py-1 rounded-md mt-2"
+          onClick={() => handleRemoveLine(i)}
+        >
+          Delete
+        </button>
+      )}
     </>
   );
 }
